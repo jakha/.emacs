@@ -3,7 +3,10 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
+(server-mode 1)
+
 (package-initialize)
+	 
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -13,7 +16,9 @@
  '(ede-project-directories (quote ("/home/jahangir/www/otms")))
  '(package-selected-packages
    (quote
-    (flycheck docker-compose-mode dockerfile-mode php-cs-fixer flymake-php yaml-mode phpt-mode ergoemacs-status ergoemacs-mode projectile ## tabbar auto-complete neotree phpactor php-mode monokai-alt-theme monokai-theme))))
+    (async phpcbf ac-php flycheck docker-compose-mode dockerfile-mode php-cs-fixer flymake-php yaml-mode phpt-mode ergoemacs-status ergoemacs-mode projectile ## tabbar auto-complete neotree phpactor php-mode monokai-alt-theme monokai-theme)))
+ '(phpcbf-executable "/usr/bin/phpcbf")
+ '(phpcbf-standard "PSR2"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -134,7 +139,7 @@ There are two things you can do about this warning:
 
 ;; cursor type
 (setq-default cursor-type 'bar)
-	
+
 ;;(add-to-list 'load  -path "~/.emacs.d/ergoemacs-mode")
 ;;(require 'ergoemacs-mode)
 
@@ -165,3 +170,38 @@ There are two things you can do about this warning:
 
 (package-install 'flycheck)
 (global-flycheck-mode)
+
+
+(add-hook 'php-mode-hook 'php-enable-psr2-coding-style)
+
+(require 'php-mode)
+
+(add-hook 'php-mode-hook
+          '(lambda ()
+             ;; Enable auto-complete-mode
+             (auto-complete-mode t)
+
+             (require 'ac-php)
+             (setq ac-sources '(ac-source-php))
+
+             ;; As an example (optional)
+             (yas-global-mode 1)
+
+             ;; Enable ElDoc support (optional)
+             (ac-php-core-eldoc-setup)
+
+             ;; Jump to definition (optional)
+             (define-key php-mode-map (kbd "M-]")
+               'ac-php-find-symbol-at-point)
+
+             ;; Return back (optional)
+             (define-key php-mode-map (kbd "M-[")
+               'ac-php-location-stack-back)))
+
+
+(require 'phpcbf)
+
+
+
+(add-hook 'php-mode-hook 'phpcbf-enable-on-save)
+
