@@ -1,0 +1,1 @@
+("~/docker/shopguide/web/" "~/www/otms/" "~/.emacs.d/ergoemacs-mode/" "~/www/otms/vendor/" "~/www/otms/tests/" "~/www/otms/public/" "~/www/otms/library/" "~/www/otms/docs/" "~/www/otms/data/" "~/www/otms/bin/" "~/www/otms/application/" "~/www/otms/_files/" "~/www/otms/.idea/" "~/www/otms/.git/")

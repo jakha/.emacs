@@ -1,0 +1,68 @@
+(((")" .
+   [1])
+  ("getType(" .
+   [1 0 0 0 0 0 0 0])
+  ("userTime" .
+   [1 0 0 0 0 0 0 0])
+  ("$rates" .
+   [1 0 0 0 0 0])
+  ("$args" .
+   [0 0 0 1 0])
+  ("profileService" .
+   [0 1 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("title" .
+   [1 0 0 0 0])
+  ("$message" .
+   [0 0 0 0 0 1 0 0])
+  ("token" .
+   [1 0 0 0 0])
+  ("$profile" .
+   [0 0 0 0 1 0 0 1])
+  ("$profiles" .
+   [0 0 0 0 0 0 0 1 0])
+  ("$type, $message" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("logCustom(" .
+   [2 1 0 0 0 1 0 0 0 0])
+  ("\\XLite\\Logger" .
+   [0 0 0 0 0 0 0 1 2 1 0 0 0])
+  ("kbd" .
+   [0 0 1])
+  ("undo" .
+   [1 0 0 0])
+  ("global-set-key" .
+   [0 0 0 0 1 0 0 0 1 0 0 0 0 0])
+  ("comment" .
+   [0 0 0 0 0 1 1])
+  ("comment-region" .
+   [0 0 0 0 0 2 0 0 0 0 0 0 0 0])
+  ("projectile-mode-map" .
+   [0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("\\XLite" .
+   [0 0 1 2 0 0])
+  ("checkLogSecurityHeader(" .
+   [0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("$path)" .
+   [0 0 0 0 0 1])
+  ("$type, $message)" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3])
+  ("phpinfo(" .
+   [0 0 0 2 0 0 0 0])
+  ("XLite\\Module\\XC\\MultiVendor\\View\\Model\\Profile\\Vendor" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0])
+  ("\\XLite\\Base" .
+   [0 0 0 0 0 0 0 0 0 0 1])
+  ("\\XLite\\Base\\IDecorator" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0])
+  ("XLite\\Module\\Zebrains\\English\\Main" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("XLite\\Module\\Zebrains\\ModuleExtends\\M" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0])
+  ("$sections" .
+   [1 0 0 0 0 0 0 0 0])
+  ("$som" .
+   [1 0 0 0])
+  ("protected" .
+   [0 0 0 0 0 1 0 0 0])
+  ("function" .
+   [0 0 0 0 0 0 1 0])))
