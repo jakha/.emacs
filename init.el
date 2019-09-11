@@ -1,231 +1,34 @@
+;;; init.el --- Spacemacs Initialization File
+;;
+;; Copyright (c) 2012-2017 Sylvain Benner & Contributors
+;;
+;; Author: Sylvain Benner <sylvain.benner@gmail.com>
+;; URL: https://github.com/syl20bnr/spacemacs
+;;
+;; This file is not part of GNU Emacs.
+;;
+;;; License: GPLv3
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(server-mode 1)
+;; Without this comment emacs25 adds (package-initialize) here
+;; (package-initialize)
 
-(package-initialize)
-	 
+;; Increase gc-cons-threshold, depending on your system you may set it back to a
+;; lower value in your dotfile (function `dotspacemacs/user-config')
+(setq gc-cons-threshold 100000000)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ede-project-directories (quote ("/home/jahangir/www/otms")))
- '(package-selected-packages
-   (quote
-    (geben doom-themes async phpcbf ac-php flycheck docker-compose-mode dockerfile-mode php-cs-fixer flymake-php yaml-mode phpt-mode ergoemacs-status ergoemacs-mode projectile ## tabbar auto-complete neotree phpactor php-mode monokai-alt-theme monokai-theme)))
- '(phpcbf-executable "/usr/bin/phpcbf")
- '(phpcbf-standard "PSR2"))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(defconst spacemacs-version         "0.200.13" "Spacemacs version.")
+(defconst spacemacs-emacs-min-version   "24.4" "Minimal version of Emacs.")
 
-;; load emacs 24's package system. Add MELPA repository.
-;;(when (>= emacs-major-version 24)
-;;  (require 'package)
-;;  (add-to-list
-;;   'package-archives
-   ;; '("melpa" . "http://stable.melpa.org/packages/") ; many packages won't show if using stable
-;;   '("melpa" . "http://melpa.milkbox.net/packages/")
-;;   t))
-;;(load-theme 'monokai t)
-
-;;(add-to-list 'load-path (expand-file-name "~/.emacs.d/themes" user-emacs-directory))
-;;(require 'jaha-theme)
-(require 'doom-themes)
-
-;; Global settings (defaults)
-(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-      doom-themes-enable-italic t) ; if nil, italics is universally disabled
-
-;; Load the theme (doom-one, doom-molokai, etc); keep in mind that each theme
-;; may have their own settings.
-;;(load-theme 'doom-one t)
-(load-theme 'doom-opera t)
-
-;; Enable flashing mode-line on errors
-(doom-themes-visual-bell-config)
-
-;; Enable custom neotree theme (all-the-icons must be installed!)
-(doom-themes-neotree-config)
-;; or for treemacs users
-(setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
-(doom-themes-treemacs-config)
-
-;; Corrects (and improves) org-mode's native fontification.
-(doom-themes-org-config)
-
-(setq show-paren-style 'expression)
-(show-paren-mode 2)
-
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-
-(setq make-backup-files  nil)
-(setq auto-save-list-file-name nil)
-(setq auto-save-default nil)
-
-
-(add-to-list 'load-path "~/.emacs.d/manually/")
-
-(require 'linum+)
-
-(setq linum-format " %d")
-(global-linum-mode 1)
-
-(require 'ido)
-(ido-mode t)
-(setq ido-enable-flex-matching t)
-
-(require 'bs)
-(setq bs-configurations
-      '(("files" "^\\*scratch\\*" nil nil bs-visits-non-file bs-sort-buffer-interns-are-last)))
-(global-set-key (kbd "<f5>") 'bs-show)
-
-(require 'sr-speedbar)
-(global-set-key (kbd "<f12>") 'sr-speedbar-toggle)
-(setq speedbar-show-unknown-files t)  ; show all files
-
-(require 'package)
-(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-                    (not (gnutls-available-p))))
-       (proto (if no-ssl "http" "https")))
-  (when no-ssl
-    (warn "\
-Your version of Emacs does not support SSL connections,
-which is unsafe because it allows man-in-the-middle attacks.
-There are two things you can do about this warning:
-1. Install an Emacs version that does support SSL and be safe.
-2. Remove this warning from your init file so you won't see it again."))
-  ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
-  (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-  ;;(add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
-  (when (< emacs-major-version 24)
-    ;; For important compatibility libraries like cl-li
-    (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
-(package-initialize)
-
-(projectile-mode +1)
-(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-(define-key projectile-mode-map (kbd "C-p") 'projectile-command-map)
-
-
-(auto-complete-mode 1)
-
-;; cut and paste to alt kbd
-(define-key global-map (kbd "M-q") 'kill-region)
-(define-key global-map (kbd "M-e") 'yank)
-(define-key global-map (kbd "C-a") 'mark-whole-buffer)
-
-;; cursor position
-(define-key global-map (kbd "M-i") 'previous-line)
-(define-key global-map (kbd "M-k") 'next-line)
-(define-key global-map (kbd "M-l") 'forward-char)
-(define-key global-map (kbd "M-j") 'backward-char)
-
-;; save
-(define-key global-map (kbd "M-s") 'save-buffer)
-(define-key global-map (kbd "C-k") 'kill-buffer)
-
-;; buffer split and close
-(define-key global-map (kbd "M-1") 'delete-other-windows)
-(define-key global-map (kbd "M-2") 'split-window-right)
-(define-key global-map (kbd "M-3") 'split-window-below)
-(define-key global-map (kbd "M-0") 'delete-window)
-
-;; switch buffer, file and project ido mode
-(define-key global-map (kbd "M-b") 'ido-switch-buffer)
-
-;; projectile commandse
-(define-key global-map (kbd "M-f") 'projectile-find-file)
-(define-key global-map (kbd "M-d") 'projectile-find-dir)
-
-;; close comand line
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-
-;; other window
-(define-key global-map (kbd "M-p") 'other-window)
-(define-key global-map (kbd "M-o") 'back-window)
-
-(defun back-window ()
-  (interactive)
-  (other-window -1))
-
-;; auto refresh buffers
-(global-auto-revert-mode 1)
-
-;; cursor type
-(setq-default cursor-type 'bar)
-
-;;(add-to-list 'load  -path "~/.emacs.d/ergoemacs-mode")
-;;(require 'ergoemacs-mode)
-
-(global-set-key [(control shift up)]  'move-line-up)
-(global-set-key [(control shift down)]  'move-line-down)
-
-
-(defun move-line-up ()
-  "Move up the current line."
-  (interactive)
-  (transpose-lines 1)
-  (forward-line -2)
-  (indent-according-to-mode))
-
-(defun move-line-down ()
-  "Move down the current line."
-  (interactive)
-  (forward-line 1)
-  (transpose-lines 1)
-  (forward-line -1)
-  (indent-according-to-mode))
-
-(require 'package)
-(add-to-list 'package-archives
-             '("MELPA Stable" . "http://stable.melpa.org/packages/") t)
-(package-initialize)
-(package-refresh-contents)
-
-(package-install 'flycheck)
-(global-flycheck-mode)
-
-
-(add-hook 'php-mode-hook 'php-enable-psr2-coding-style)
-
-(require 'php-mode)
-
-(add-hook 'php-mode-hook
-          '(lambda ()
-             ;; Enable auto-complete-mode
-             (auto-complete-mode t)
-
-             (require 'ac-php)
-             (setq ac-sources '(ac-source-php))
-
-             ;; As an example (optional)
-             (yas-global-mode 1)
-
-             ;; Enable ElDoc support (optional)
-             (ac-php-core-eldoc-setup)
-
-             ;; Jump to definition (optional)
-             (define-key php-mode-map (kbd "M-]")
-               'ac-php-find-symbol-at-point)
-
-             ;; Return back (optional)
-             (define-key php-mode-map (kbd "M-[")
-               'ac-php-location-stack-back)))
-
-
-(require 'phpcbf)
-
-
-
-(add-hook 'php-mode-hook 'phpcbf-enable-on-save)
-
+(if (not (version<= spacemacs-emacs-min-version emacs-version))
+    (error (concat "Your version of Emacs (%s) is too old. "
+                   "Spacemacs requires Emacs version %s or above.")
+           emacs-version spacemacs-emacs-min-version)
+  (load-file (concat (file-name-directory load-file-name)
+                     "core/core-load-paths.el"))
+  (require 'core-spacemacs)
+  (spacemacs/init)
+  (configuration-layer/sync)
+  (spacemacs-buffer/display-startup-note)
+  (spacemacs/setup-startup-hook)
+  (require 'server)
+  (unless (server-running-p) (server-start)))
