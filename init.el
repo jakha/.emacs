@@ -32,3 +32,7 @@
   (spacemacs/setup-startup-hook)
   (require 'server)
   (unless (server-running-p) (server-start)))
+
+
+(load "~/.emacs.d/custom/jaha-kbd.el")
+(load "~/.emacs.d/custom/jaha-style.el")
