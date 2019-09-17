@@ -1,0 +1,1 @@
+("~/docker/shopguide/web/" "~/.emacs.d/")
