@@ -4,6 +4,9 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
+(eval-when-compile
+  (require 'use-package))
+
 (add-to-list 'load-path (concat user-emacs-directory "utils/"))
 (require 'load-directory)		
 
@@ -32,6 +35,20 @@
 (require 'projectile)
 (setq projectile-completion-system 'ivy)
 (projectile-mode +1)
+
+(use-package treemacs
+  :ensure t
+  :defer t
+  :init
+  (with-eval-after-load 'winum
+    ( define-key winum-keymap (kbd "<f12>") #'treemacs))
+  :config
+  (progn
+    (setq treemacs-width 25
+	  treemacs-toggle-fixed-width t))
+  :bind
+  (:map global-map
+	("<f12>" . treemacs)))
 
 (use-package treemacs-projectile
   :after treemacs projectile

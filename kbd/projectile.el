@@ -3,4 +3,5 @@
 
 ;; projectile commandse
 (define-key global-map (kbd "M-f") 'projectile-find-file)
-sp(define-key global-map (kbd "M-d") 'projectile-find-dir)
+(define-key global-map (kbd "M-d") 'projectile-find-dir)
+(define-key global-map (kbd "M-p") 'projectile-switch-project)
