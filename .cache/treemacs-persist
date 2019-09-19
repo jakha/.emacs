@@ -1,3 +1,5 @@
 * Default Workspace
 ** shopguide
  - path :: /home/jahangir/docker/shopguide/web
+** .emacs.d
+ - path :: /home/jahangir/.emacs.d
