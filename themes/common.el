@@ -7,3 +7,12 @@
 
 ;; cursor type
 (setq-default cursor-type 'bar)
+(use-package all-the-icons)
+
+(require 'page-break-lines)
+(global-page-break-lines-mode)
+
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))

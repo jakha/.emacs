@@ -16,6 +16,13 @@
 ;; switch buffer, file and project ido mode
 (define-key global-map (kbd "M-b") 'ido-switch-buffer)
 
+;; swiper
+(define-key global-map (kbd "C-s") 'swiper)
+
+;;counsel
+(define-key global-map (kbd "C-f") 'counsel-find-file)
+
+
 ;; close comand line
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
