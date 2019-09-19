@@ -14,6 +14,7 @@
 
 (load-directory (concat user-emacs-directory "themes/"))
 (load-directory (concat user-emacs-directory "kbd/"))
+(load-directory (concat user-emacs-directory "git/"))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -22,7 +23,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (no-littering page-break-lines cnfonts treemacs-projectile use-package projectile counsel ivy doom-themes))))
+    (magit no-littering page-break-lines cnfonts treemacs-projectile use-package projectile counsel ivy doom-themes))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -30,7 +31,7 @@
  ;; If there is more than one, they won't work right.
  )
 
-;;ivy
+;;ivy.gitignore
 (ivy-mode 1)
 
 ;;projectile
