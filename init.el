@@ -22,7 +22,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (page-break-lines cnfonts treemacs-projectile use-package projectile counsel ivy doom-themes))))
+    (no-littering page-break-lines cnfonts treemacs-projectile use-package projectile counsel ivy doom-themes))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -66,3 +66,45 @@
         uniquify-separator           " • "
         uniquify-after-kill-buffer-p t
         uniquify-ignore-buffers-re   "^\\*"))
+
+;;use littering
+(setq no-littering-etc-directory
+      (expand-file-name "config/" user-emacs-directory))
+(setq no-littering-var-directory
+      (expand-file-name "data/" user-emacs-directory))
+(require 'no-littering)
+
+;; session
+(use-package session
+  :defer    t
+  :hook ((after-init . session-initialize))
+  :init
+  (setq session-save-file (no-littering-expand-var-file-name ".session")
+        session-name-disable-regexp "\\(?:\\`'/tmp\\|\\.git/[A-Z_]+\\'\\)"
+        session-save-file-coding-system 'utf-8
+        desktop-globals-to-save
+        (append '((comint-input-ring        . 50)
+                  (compile-history          . 30)
+                  desktop-missing-file-warning
+                  (dired-regexp-history     . 20)
+                  (extended-command-history . 30)
+                  (face-name-history        . 20)
+                  (file-name-history        . 100)
+                  (grep-find-history        . 30)
+                  (grep-history             . 30)
+                  (ivy-history              . 100)
+                  (magit-revision-history   . 50)
+                  (minibuffer-history       . 50)
+                  (org-clock-history        . 50)
+                  (org-refile-history       . 50)
+                  (org-tags-history         . 50)
+                  (query-replace-history    . 60)
+                  (read-expression-history  . 60)
+                  (regexp-history           . 60)
+                  (regexp-search-ring       . 20)
+                  register-alist
+                  (search-ring              . 20)
+                  (shell-command-history    . 50)
+                  tags-file-name
+                  tags-table-list
+                  kill-ring))))

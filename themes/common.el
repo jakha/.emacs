@@ -18,7 +18,7 @@
   (dashboard-setup-startup-hook))
 
 ;; Set the title
-(setq dashboard-banner-logo-title "Welcome to Emacs Dashboard")
+;;(setq dashboard-banner-logo-title "Welcome to Emacs Dashboard")
 ;; Set the banner
 (setq dashboard-startup-banner (concat user-emacs-directory "themes/imgs/logo1.png"))
 ;; Value can be
