@@ -11,6 +11,7 @@
 (add-to-list 'load-path (concat user-emacs-directory "utils/"))
 (require 'load-directory)		
 (load "add-elpa-melpa.el")
+(load  (concat user-emacs-directory "php/base.el"))
 
 (load-directory (concat user-emacs-directory "themes/"))
 (load-directory (concat user-emacs-directory "kbd/"))
@@ -23,7 +24,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (web-mode magit no-littering page-break-lines cnfonts treemacs-projectile use-package projectile counsel ivy doom-themes))))
+    (flylisp ac-php web-mode magit no-littering page-break-lines cnfonts treemacs-projectile use-package projectile counsel ivy doom-themes))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -114,6 +115,3 @@
                   kill-ring))))
 
 
-;; Put follow code into init.el
-(when (file-directory-p (concat user-emacs-directory "php/php-mode"))
-  (load (concat user-emacs-directory "php/php-mode/php-mode-autoloads.el"))
