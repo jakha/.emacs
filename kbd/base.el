@@ -32,3 +32,6 @@
 (defun back-window ()
   (interactive)
   (other-window -1))
+
+;; rgrep
+(define-key global-map (kbd "M-g r") 'rgrep)
