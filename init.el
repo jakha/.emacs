@@ -23,7 +23,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (magit no-littering page-break-lines cnfonts treemacs-projectile use-package projectile counsel ivy doom-themes))))
+    (web-mode magit no-littering page-break-lines cnfonts treemacs-projectile use-package projectile counsel ivy doom-themes))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -74,6 +74,9 @@
 (setq no-littering-var-directory
       (expand-file-name "data/" user-emacs-directory))
 (require 'no-littering)
+
+
+(require 'web-mode)
 
 ;; session
 (use-package session
