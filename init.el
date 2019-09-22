@@ -112,3 +112,8 @@
                   tags-file-name
                   tags-table-list
                   kill-ring))))
+
+
+;; Put follow code into init.el
+(when (file-directory-p (concat user-emacs-directory "php/php-mode"))
+  (load (concat user-emacs-directory "php/php-mode/php-mode-autoloads.el"))

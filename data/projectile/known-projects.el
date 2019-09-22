@@ -1,1 +1,1 @@
-("~/.emacs.d/")
+("~/docker/shopguide/web/" "~/.emacs.d/")
