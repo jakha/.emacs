@@ -9,7 +9,7 @@
   (require 'use-package))
 
 (add-to-list 'load-path (concat user-emacs-directory "utils/"))
-(require 'load-directory)		
+(require 'load-directory)
 (load "add-elpa-melpa.el")
 (load  (concat user-emacs-directory "php/base.el"))
 
@@ -18,6 +18,9 @@
 (load-directory (concat user-emacs-directory "git/"))
 (load-directory (concat user-emacs-directory "sbcl/"))
 
+
+(setq-default phpstan-executable 'docker)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -25,14 +28,14 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (phpcbf xah-elisp-mode rainbow-delimiters smartparens flylisp ac-php web-mode magit no-littering page-break-lines cnfonts treemacs-projectile use-package projectile counsel ivy doom-themes)))
+    (flycheck-phpstan phpstan phpcbf xah-elisp-mode rainbow-delimiters smartparens flylisp ac-php web-mode magit no-littering page-break-lines cnfonts treemacs-projectile use-package projectile counsel ivy doom-themes)))
  '(phpcbf-executable "/usr/bin/phpcbf")
  '(phpcbf-standard "PSR2")
  '(safe-local-variable-values
    (quote
     ((phpstan-level . max)
-     (phpstan-config-file root . "phpstan-custom.neon")
-     (phpstan-working-dir root)
+     (phpstan-config-file default-directory . "phpstan-custom.neon")
+     (phpstan-working-dir default-directory)
      (phpstan-executable . docker)
      (php-project-root . auto)))))
 (custom-set-faces

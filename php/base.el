@@ -9,14 +9,22 @@
     (package-refresh-contents)
     (package-install 'ac-php))
 
+
+(defun my-php-mode-stan ()
+  "My PHP-mode hook."
+  (require 'flycheck-phpstan)
+  (global-flycheck-mode t))
+
+(add-hook 'php-mode-hook 'my-php-mode-stan)
+
 ;;auto-completion
 (require 'php-mode)			
 
 (add-hook 'php-mode-hook 'php-enable-psr2-coding-style)
 
 
-
 (require 'phpcbf)
+
 
 (custom-set-variables
  '(phpcbf-executable "/usr/bin/phpcbf")
