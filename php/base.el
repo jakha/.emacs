@@ -32,6 +32,8 @@
 ;; ;; Auto format on save.
 (add-hook 'php-mode-hook 'phpcbf-enable-on-save 'php-eldoc-mode)
 
+(use-package phpactor :ensure t)
+(use-package company-phpactor :ensure t)
 
 (add-hook 'php-mode-hook
           '(lambda ()
@@ -40,9 +42,18 @@
              (require 'ac-php)
              (setq ac-sources '(ac-source-php))
 
+	     set (make-local-variable 'company-backends)
+	     '(;; list of backends
+	       company-phpactor
+	       company-files
+	       )
+
+	     (make-local-variable 'eldoc-documentation-function)
+	     (setq eldoc-documentation-function
+		   'phpactor-hover)
              ;;(company-mode t)
 	     ;; Enable company-mode
-            ;; (require 'company-php)
+	     ;; (require 'company-php)
 	     
              ;; As an example (optional)
              (yas-global-mode 1)
