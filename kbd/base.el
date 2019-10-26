@@ -22,6 +22,8 @@
 ;;counsel
 (define-key global-map (kbd "C-f") 'counsel-find-file)
 
+(define-key global-map (kbd "C-e") 'eval-last-sexp)
+
 
 ;; close comand line
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -35,3 +37,7 @@
 
 ;; rgrep
 (define-key global-map (kbd "M-g r") 'rgrep)
+
+
+;;treemacs
+(define-key global-map (kbd "M-t f") 'treemacs-find-file)

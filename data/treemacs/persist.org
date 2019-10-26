@@ -1,5 +1,3 @@
 * Default Workspace
-** .emacs.d
- - path :: /home/jahangir/.emacs.d
-** web
- - path :: /home/jahangir/docker/shopguide/web
+** shopguide-backend-xcart
+ - path :: /home/jaha/projects/shopguide-backend-xcart

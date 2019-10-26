@@ -14,6 +14,18 @@
 
 (add-hook 'php-mode-hook 'php-enable-psr2-coding-style)
 
+
+
+(require 'phpcbf)
+
+(custom-set-variables
+ '(phpcbf-executable "/usr/bin/phpcbf")
+ '(phpcbf-standard "PSR2"))
+
+;; Auto format on save.
+(add-hook 'php-mode-hook 'phpcbf-enable-on-save)
+
+
 (add-hook 'php-mode-hook
           '(lambda ()
              ;; Enable auto-complete-mode
@@ -42,6 +54,3 @@
              ;; Return back (optional)
              (define-key php-mode-map (kbd "M-[")
                'ac-php-location-stack-back)))
-
-
-(message "lol")

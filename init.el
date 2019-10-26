@@ -16,6 +16,7 @@
 (load-directory (concat user-emacs-directory "themes/"))
 (load-directory (concat user-emacs-directory "kbd/"))
 (load-directory (concat user-emacs-directory "git/"))
+(load-directory (concat user-emacs-directory "sbcl/"))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -24,7 +25,16 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (flylisp ac-php web-mode magit no-littering page-break-lines cnfonts treemacs-projectile use-package projectile counsel ivy doom-themes))))
+    (phpcbf xah-elisp-mode rainbow-delimiters smartparens flylisp ac-php web-mode magit no-littering page-break-lines cnfonts treemacs-projectile use-package projectile counsel ivy doom-themes)))
+ '(phpcbf-executable "/usr/bin/phpcbf")
+ '(phpcbf-standard "PSR2")
+ '(safe-local-variable-values
+   (quote
+    ((phpstan-level . max)
+     (phpstan-config-file root . "phpstan-custom.neon")
+     (phpstan-working-dir root)
+     (phpstan-executable . docker)
+     (php-project-root . auto)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -34,6 +44,11 @@
 
 ;;ivy.gitignore
 (ivy-mode 1)
+
+(require 'smartparens-config)
+
+(require 'rainbow-delimiters)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 ;;projectile
 (require 'projectile)
@@ -76,6 +91,7 @@
       (expand-file-name "data/" user-emacs-directory))
 (require 'no-littering)
 
+(smartparens-global-mode)
 
 (require 'web-mode)
 
@@ -113,5 +129,3 @@
                   tags-file-name
                   tags-table-list
                   kill-ring))))
-
-
