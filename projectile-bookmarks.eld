@@ -1,1 +1,1 @@
-("~/.emacs.d/")
+("~/.emacs.d/" "~/projects/otms/" "~/projects/shopguide-backend-xcart/")

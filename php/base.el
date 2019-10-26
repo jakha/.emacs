@@ -1,9 +1,9 @@
-;; Put follow code into init.el
+;; ;; Put follow code into init.el
 (when (file-directory-p (concat user-emacs-directory "php/php-mode"))
   (load (concat user-emacs-directory "php/php-mode/php-mode-autoloads.el")))
   
 (when (file-directory-p (concat user-emacs-directory "php/company-mode"))
-      (load (concat user-emacs-directory "php/company-mode/company.el")))
+       (load (concat user-emacs-directory "php/company-mode/company.el")))
 
 (unless (package-installed-p 'ac-php)
     (package-refresh-contents)
@@ -15,23 +15,22 @@
   (require 'flycheck-phpstan)
   (global-flycheck-mode t))
 
-(add-hook 'php-mode-hook 'my-php-mode-stan)
-
-;;auto-completion
-(require 'php-mode)			
-
-(add-hook 'php-mode-hook 'php-enable-psr2-coding-style)
-
-
-(require 'phpcbf)
-
-
 (custom-set-variables
  '(phpcbf-executable "/usr/bin/phpcbf")
  '(phpcbf-standard "PSR2"))
 
-;; Auto format on save.
-(add-hook 'php-mode-hook 'phpcbf-enable-on-save)
+(require 'flymake-php)
+;; ;;auto-completion
+
+(add-hook 'php-mode-hook 'my-php-mode-stan 'php-enable-psr2-coding-style  'flymake-php-load)
+
+
+(require 'phpcbf)
+(defun php-eldoc-mode ()
+  (php-eldoc-enable))
+
+;; ;; Auto format on save.
+(add-hook 'php-mode-hook 'phpcbf-enable-on-save 'php-eldoc-mode)
 
 
 (add-hook 'php-mode-hook

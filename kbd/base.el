@@ -40,4 +40,4 @@
 
 
 ;;treemacs
-(define-key global-map (kbd "M-t f") 'treemacs-find-file)
+;;(define-key global-map (kbd "M-t f") 'treemacs-find-file)

@@ -11,7 +11,7 @@
 (add-to-list 'load-path (concat user-emacs-directory "utils/"))
 (require 'load-directory)
 (load "add-elpa-melpa.el")
-(load  (concat user-emacs-directory "php/base.el"))
+(load  (concat user-emacs-directory "php/base.el")) 
 
 (load-directory (concat user-emacs-directory "themes/"))
 (load-directory (concat user-emacs-directory "kbd/"))
@@ -28,7 +28,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (flycheck-phpstan phpstan phpcbf xah-elisp-mode rainbow-delimiters smartparens flylisp ac-php web-mode magit no-littering page-break-lines cnfonts treemacs-projectile use-package projectile counsel ivy doom-themes)))
+    (php-eldoc flymake-php flycheck-phpstan phpstan phpcbf xah-elisp-mode rainbow-delimiters smartparens flylisp ac-php web-mode magit no-littering page-break-lines cnfonts treemacs-projectile use-package projectile counsel ivy doom-themes)))
  '(phpcbf-executable "/usr/bin/phpcbf")
  '(phpcbf-standard "PSR2")
  '(safe-local-variable-values
@@ -99,36 +99,36 @@
 (require 'web-mode)
 
 ;; session
-(use-package session
-  :defer    t
-  :hook ((after-init . session-initialize))
-  :init
-  (setq session-save-file (no-littering-expand-var-file-name ".session")
-        session-name-disable-regexp "\\(?:\\`'/tmp\\|\\.git/[A-Z_]+\\'\\)"
-        session-save-file-coding-system 'utf-8
-        desktop-globals-to-save
-        (append '((comint-input-ring        . 50)
-                  (compile-history          . 30)
-                  desktop-missing-file-warning
-                  (dired-regexp-history     . 20)
-                  (extended-command-history . 30)
-                  (face-name-history        . 20)
-                  (file-name-history        . 100)
-                  (grep-find-history        . 30)
-                  (grep-history             . 30)
-                  (ivy-history              . 100)
-                  (magit-revision-history   . 50)
-                  (minibuffer-history       . 50)
-                  (org-clock-history        . 50)
-                  (org-refile-history       . 50)
-                  (org-tags-history         . 50)
-                  (query-replace-history    . 60)
-                  (read-expression-history  . 60)
-                  (regexp-history           . 60)
-                  (regexp-search-ring       . 20)
-                  register-alist
-                  (search-ring              . 20)
-                  (shell-command-history    . 50)
-                  tags-file-name
-                  tags-table-list
-                  kill-ring))))
+;; (use-package session
+;;   :defer    t
+;;   :hook ((after-init . session-initialize))
+;;   :init
+;;   (setq session-save-file (no-littering-expand-var-file-name ".session")
+;;         session-name-disable-regexp "\\(?:\\`'/tmp\\|\\.git/[A-Z_]+\\'\\)"
+;;         session-save-file-coding-system 'utf-8
+;;         desktop-globals-to-save
+;;         (append '((comint-input-ring        . 50)
+;;                   (compile-history          . 30)
+;;                   desktop-missing-file-warning
+;;                   (dired-regexp-history     . 20)
+;;                   (extended-command-history . 30)
+;;                   (face-name-history        . 20)
+;;                   (file-name-history        . 100)
+;;                   (grep-find-history        . 30)
+;;                   (grep-history             . 30)
+;;                   (ivy-history              . 100)
+;;                   (magit-revision-history   . 50)
+;;                   (minibuffer-history       . 50)
+;;                   (org-clock-history        . 50)
+;;                   (org-refile-history       . 50)
+;;                   (org-tags-history         . 50)
+;;                   (query-replace-history    . 60)
+;;                   (read-expression-history  . 60)
+;;                   (regexp-history           . 60)
+;;                   (regexp-search-ring       . 20)
+;;                   register-alist
+;;                   (search-ring              . 20)
+;;                   (shell-command-history    . 50)
+;;                   tags-file-name
+;;                   tags-table-list
+;;                   kill-ring))))
