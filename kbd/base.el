@@ -47,3 +47,4 @@
 
 (global-set-key (kbd "C-n") #'xah-new-empty-buffer)
 (global-set-key (kbd "C-S-n") #'lunaryorn-new-buffer-frame)
+(global-set-key (kbd "<f5>") 'bs-show)

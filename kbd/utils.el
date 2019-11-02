@@ -21,3 +21,13 @@ Version 2017-11-01"
   (let ((buffer (generate-new-buffer "untitled")))
     (set-buffer-major-mode buffer)
     (display-buffer buffer '(display-buffer-pop-up-frame . nil))))
+
+(require 'linum+)
+
+(setq linum-format " %d")
+(global-linum-mode 1)
+
+
+(require 'bs)
+(setq bs-configurations
+      '(("files" "^\\*scratch\\*" nil nil bs-visits-non-file bs-sort-buffer-interns-are-last)))
