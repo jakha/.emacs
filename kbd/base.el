@@ -41,3 +41,9 @@
 
 ;;treemacs
 ;;(define-key global-map (kbd "M-t f") 'treemacs-find-file)
+
+
+;;utils
+
+(global-set-key (kbd "C-n") #'xah-new-empty-buffer)
+(global-set-key (kbd "C-S-n") #'lunaryorn-new-buffer-frame)
