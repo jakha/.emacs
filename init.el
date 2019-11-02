@@ -28,7 +28,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (phpactor php-eldoc flymake-php flycheck-phpstan phpstan phpcbf xah-elisp-mode rainbow-delimiters smartparens flylisp ac-php web-mode magit no-littering page-break-lines cnfonts treemacs-projectile use-package projectile counsel ivy doom-themes)))
+    (docker-compose-mode dockerfile-mode phpactor php-eldoc flymake-php flycheck-phpstan phpstan phpcbf xah-elisp-mode rainbow-delimiters smartparens flylisp ac-php web-mode magit no-littering page-break-lines cnfonts treemacs-projectile use-package projectile counsel ivy doom-themes)))
  '(phpcbf-executable "/usr/bin/phpcbf")
  '(phpcbf-standard "PSR2")
  '(safe-local-variable-values
