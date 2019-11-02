@@ -70,7 +70,7 @@
   :config
   (progn
     (setq treemacs-width 25
-	  treemacs-toggle-fixed-width 1))
+	  treemacs-toggle-fixed-widt t))
   :bind
   (:map global-map
 	("<f12>" . treemacs)

@@ -1,4 +1,3 @@
-;; ;; Put follow code into init.el
 (when (file-directory-p (concat user-emacs-directory "php/php-mode"))
   (load (concat user-emacs-directory "php/php-mode/php-mode-autoloads.el")))
   
@@ -9,18 +8,18 @@
     (package-refresh-contents)
     (package-install 'ac-php))
 
+ (global-flycheck-mode t)
 
 (defun my-php-mode-stan ()
   "My PHP-mode hook."
-  (require 'flycheck-phpstan)
-  (global-flycheck-mode t))
+  (require 'flycheck-phpstan))
 
 (custom-set-variables
  '(phpcbf-executable "/usr/bin/phpcbf")
  '(phpcbf-standard "PSR2"))
 
 (require 'flymake-php)
-;; ;;auto-completion
+;;auto-completion
 
 (add-hook 'php-mode-hook 'my-php-mode-stan 'php-enable-psr2-coding-style  'flymake-php-load)
 
@@ -33,7 +32,7 @@
 (add-hook 'php-mode-hook 'phpcbf-enable-on-save 'php-eldoc-mode)
 
 (use-package phpactor :ensure t)
-(use-package company-phpactor :ensure t)
+;;(use-package company-phpactor :ensure t)
 
 (add-hook 'php-mode-hook
           '(lambda ()
@@ -42,15 +41,15 @@
              (require 'ac-php)
              (setq ac-sources '(ac-source-php))
 
-	     set (make-local-variable 'company-backends)
-	     '(;; list of backends
-	       company-phpactor
-	       company-files
-	       )
+	     ;; set (make-local-variable 'company-backends)
+	     ;; '(;; list of backends
+	     ;;   company-phpactor
+	     ;;   company-files
+	     ;;   )
 
-	     (make-local-variable 'eldoc-documentation-function)
-	     (setq eldoc-documentation-function
-		   'phpactor-hover)
+	     ;; (make-local-variable 'eldoc-documentation-function)
+	     ;; (setq eldoc-documentation-function
+	     ;; 	   'phpactor-hover)
              ;;(company-mode t)
 	     ;; Enable company-mode
 	     ;; (require 'company-php)
