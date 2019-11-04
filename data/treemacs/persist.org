@@ -1,3 +1,5 @@
 * Default Workspace
 ** shopguide-backend-xcart
  - path :: /home/jaha/projects/shopguide-backend-xcart
+** kinomax
+ - path :: /home/jaha/projects/kinomax

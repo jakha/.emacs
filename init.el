@@ -17,7 +17,7 @@
 (load-directory (concat user-emacs-directory "kbd/"))
 (load-directory (concat user-emacs-directory "git/"))
 (load-directory (concat user-emacs-directory "sbcl/"))
-
+(load-directory (concat user-emacs-directory "tramp/"))
 
 (setq-default phpstan-executable 'docker)
 
@@ -28,7 +28,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (docker-compose-mode dockerfile-mode phpactor php-eldoc flymake-php flycheck-phpstan phpstan phpcbf xah-elisp-mode rainbow-delimiters smartparens flylisp ac-php web-mode magit no-littering page-break-lines cnfonts treemacs-projectile use-package projectile counsel ivy doom-themes)))
+    (editorconfig markdown-mode docker-compose-mode dockerfile-mode phpactor php-eldoc flymake-php flycheck-phpstan phpstan phpcbf xah-elisp-mode rainbow-delimiters smartparens flylisp ac-php web-mode magit no-littering page-break-lines cnfonts treemacs-projectile use-package projectile counsel ivy doom-themes)))
  '(phpcbf-executable "/usr/bin/phpcbf")
  '(phpcbf-standard "PSR2")
  '(safe-local-variable-values
@@ -132,3 +132,5 @@
 ;;                   tags-file-name
 ;;                   tags-table-list
 ;;                   kill-ring))))
+
+(editorconfig-mode 1)
