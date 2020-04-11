@@ -18,3 +18,5 @@
          ("C-M-<right>" . sp-backward-barf-sexp)
          ("M-F" . sp-forward-symbol)
          ("M-B" . sp-backward-symbol)))
+
+(smartparens-global-mode 1)

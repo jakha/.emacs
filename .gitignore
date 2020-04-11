@@ -2,3 +2,8 @@ elpa/
 site-lisp/
 eshell/
 languages/php/files/
+url/
+transient/
+recentf
+projectile.cache
+projectile-bookmarks.eld
