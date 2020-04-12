@@ -2,7 +2,7 @@
 ;;; Commentary:
 
 ;;; Code:
-(setq php-cbf-dir "~/.emacs.d/languages/php/phpcbf")
+(setq php-cbf-dir "~/.emacs.d/languages/php/files/vendor/phpcbf")
 
 (when (not (file-directory-p php-cbf-dir))
   (let ((default-directory "~/.emacs.d"))

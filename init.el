@@ -29,7 +29,7 @@
  '(flycheck-php-phpcs-executable "~/.emacs.d/languages/php/phpcbf/bin/phpcs")
  '(package-selected-packages
    (quote
-    (magit phpcbf company-php composer web-mode projectile diminish all-the-icons dashboard counsel swiper ivy php-project company-go lsp-go docker lsp-docker go-mode sublimity smooth-scrolling smartparens php-mode lsp-ui flycheck company)))
+    (ac-php company-php magit phpcbf composer web-mode projectile diminish all-the-icons dashboard counsel swiper ivy php-project company-go lsp-go docker lsp-docker go-mode sublimity smooth-scrolling smartparens php-mode lsp-ui flycheck company)))
  '(php-mode-coding-style (quote psr2))
  '(phpcbf-executable (concat php-cbf-dir "/bin/phpcbf"))
  '(phpcbf-standard "PSR12"))
