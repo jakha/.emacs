@@ -21,3 +21,10 @@
 (setq visible-bell 1)
 
 (load (concat user-emacs-directory "kbd/init.el"))
+
+(desktop-save-mode 1)
+
+
+;;(load (concat user-emacs-directory "base.conf/init-desktop-revert.el"))
+
+;;(my-desktop)

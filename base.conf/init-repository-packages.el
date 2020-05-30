@@ -26,6 +26,10 @@
 
 (load (concat user-emacs-directory "base.conf/init-magit.el"))
 
+(load (concat user-emacs-directory "base.conf/init-polymodes.el"))
+
+(load (concat user-emacs-directory "base.conf/init-lsp-mode.el"))
+
 
 (load (concat user-emacs-directory "languages/init-languages.el"))
 

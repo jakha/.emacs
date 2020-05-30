@@ -7,3 +7,11 @@ transient/
 recentf
 projectile.cache
 projectile-bookmarks.eld
+desktop/
+.cache/
+.emacs.desktop
+.emacs.desktop.lock
+.lsp-session-v1
+session.*
+multi-compile.cache
+npm-debug.log
