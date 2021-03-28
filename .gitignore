@@ -15,3 +15,11 @@ desktop/
 session.*
 multi-compile.cache
 npm-debug.log
+node_modules/
+\#recentf#
+*~
+.*
+ido.last
+ac-comphist.dat
+wget-log
+tramp
