@@ -20,3 +20,13 @@
          ("M-B" . sp-backward-symbol)))
 
 (smartparens-global-mode 1)
+
+(add-hook 'show-paren-mode-hook (lambda ()
+				  (set-face-attribute 'show-paren-match nil :background nil :foreground "green")))
+(show-paren-mode)
+
+
+(provide 'init-smartparens)
+;;; init-smartparens.el ends here
+
+

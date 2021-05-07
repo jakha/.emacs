@@ -35,4 +35,4 @@
    (multi-compile-locate-file-dir ".git"))))
     ))
 
-(add-to-list 'yas-snippet-dirs "~/.emacs.d/languages/go/yasnippet-go/go-mode")
+;;(add-to-list 'yas-snippet-dirs "~/.emacs.d/languages/go/yasnippet-go/go-mode")

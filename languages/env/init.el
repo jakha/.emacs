@@ -37,3 +37,11 @@
 
 (provide 'init)
 ;;; init.el ends here
+
+
+(use-package  log4j-mode
+  :ensure t)
+
+
+(use-package  jtags
+  :ensure t)

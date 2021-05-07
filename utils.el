@@ -76,6 +76,3 @@ Version 2017-09-01"
          (message "File path copied: 「%s」" $fpath)
          $fpath )))))
 
-(defun php-insert-arrow ()
-  (interactive)
-  (insert "->"))

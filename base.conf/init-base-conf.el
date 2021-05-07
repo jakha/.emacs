@@ -24,7 +24,15 @@
 
 (desktop-save-mode 1)
 
-
+(delete-selection-mode t)  ; delete seleted text when typing
 ;;(load (concat user-emacs-directory "base.conf/init-desktop-revert.el"))
 
 ;;(my-desktop)
+
+;; to not show line toggle sign 
+(setf (cdr (assq 'continuation fringe-indicator-alist))
+      '(nil nil) ;; no continuation indicators
+      ;; '(nil right-curly-arrow) ;; right indicator only
+      ;; '(left-curly-arrow nil) ;; left indicator only
+      ;; '(left-curly-arrow right-curly-arrow) ;; default
+      )

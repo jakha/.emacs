@@ -12,9 +12,12 @@
   
 ;; cut and paste to alt kbd
 (define-key global-map (kbd "M-q") 'kill-region)
-(define-key global-map (kbd "M-e") 'yank)
+(define-key global-map (kbd "M-e") '(lambda (&optional ARG)
+				      (interactive)
+				      (when (not (null (region-active-p)))
+					(delete-region (region-beginning) (region-end)))
+				      (yank)))
 (define-key global-map (kbd "C-a") 'mark-whole-buffer)
-
 (define-key global-map (kbd "C-z") 'undo)
 
 ;; switch buffer, file and project ido mode
@@ -35,3 +38,6 @@
 (global-set-key (kbd "<f5>") 'bs-show)
 
 (global-set-key (kbd "<f3>") (lambda () (interactive) (revert-buffer t t)))
+
+(provide 'init)
+;;; init.el ends here
