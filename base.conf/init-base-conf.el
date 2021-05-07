@@ -25,6 +25,10 @@
 (desktop-save-mode 1)
 
 (delete-selection-mode t)  ; delete seleted text when typing
+
+(setq-default tab-width 4)
+
+
 ;;(load (concat user-emacs-directory "base.conf/init-desktop-revert.el"))
 
 ;;(my-desktop)

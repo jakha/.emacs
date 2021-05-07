@@ -23,16 +23,18 @@
 (add-hook 'go-mode-hook (lambda ()
                             (set (make-local-variable 'company-backends) '(company-go))
                             (company-mode)))
-(add-hook 'go-mode-hook 'yas-minor-mode)
+;;(add-hook 'go-mode-hook 'yas-minor-mode)
 (add-hook 'go-mode-hook 'flycheck-mode)
 
 
-(setq multi-compile-alist '(
-    (go-mode . (
-("go-build" "go build -v"
-   (locate-dominating-file buffer-file-name ".git"))
-("go-build-and-run" "go build -v && echo 'build finish' && eval ./${PWD##*/}"
-   (multi-compile-locate-file-dir ".git"))))
-    ))
+(setq multi-compile-alist '((go-mode . (("go-build" "go build -v"
+										 (locate-dominating-file buffer-file-name ".git"))
+										("go-run" "go run -v main.go"
+										 (locate-dominating-file buffer-file-name "main.go"))))))
+
+(defun run-file-path()
+  "."
+  (message (buffer-file-name))
+  (buffer-file-name))
 
 ;;(add-to-list 'yas-snippet-dirs "~/.emacs.d/languages/go/yasnippet-go/go-mode")
