@@ -40,3 +40,13 @@
       ;; '(left-curly-arrow nil) ;; left indicator only
       ;; '(left-curly-arrow right-curly-arrow) ;; default
       )
+
+
+
+(defun buffer-background-black ()
+  "."
+  (interactive)
+  (setq buffer-face-mode-face `(:background "black"))
+  (buffer-face-mode 1))
+
+(add-hook 'compile-mode-hook 'buffer-background-black)

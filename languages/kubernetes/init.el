@@ -86,7 +86,7 @@
 	 (pod (aref (tabulated-list-get-entry) 0))
 	 (kube-proc (start-process process buffer "kubectl" "-n" namespace
 				   (concat "--kubeconfig=" kubeconfig)
-				   "logs" pod "fpm")))
+				   "logs" pod)))
     (set-process-filter kube-proc (handle-get-logs-output context))))
 
 (defun k8s-describe-pod (context)
@@ -135,10 +135,10 @@
   	 (process-suffix (getf (get-constants) :get-pods-process-name))
   	 (process-name (concat alias "-" process-suffix))
   	 (process-buffer (concat "*" process-name "*"))
-    	 (kube-proc (start-process process-name process-buffer "kubectl" "get" "pods"
-    				  (concat "-n" namespace)
-    				  "--no-headers=true"
-    				  (concat "--kubeconfig=" kubeconfig))))
+	 (kube-proc (start-process process-name process-buffer "kubectl" "get" "pods"
+							   (concat "-n" namespace)
+							   "--no-headers=true"
+							   (concat "--kubeconfig=" kubeconfig))))
     (set-process-filter kube-proc (handle-get-pods-output context))))
 
 (defun k8s-get-ingress (context)
