@@ -9,3 +9,5 @@
 (load (concat user-emacs-directory "languages/js/init-js.el"))
 
 (load (concat user-emacs-directory "languages/kubernetes/init.el"))
+
+(load (concat user-emacs-directory "languages/env/init.el"))

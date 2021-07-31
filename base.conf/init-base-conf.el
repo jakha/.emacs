@@ -49,4 +49,9 @@
   (setq buffer-face-mode-face `(:background "black"))
   (buffer-face-mode 1))
 
-(add-hook 'compile-mode-hook 'buffer-background-black)
+(add-hook 'post-command-hook
+          (lambda ()
+            (let ((messages (get-buffer "*Messages*")))
+              (unless (eq (current-buffer) messages)
+                (with-current-buffer messages
+                  (goto-char (point-max)))))))

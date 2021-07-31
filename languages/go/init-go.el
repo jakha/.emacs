@@ -38,7 +38,9 @@
 	   (when (not (null  (get-buffer compilation-buffer-name)))
 		 (let ((kill-buffer-query-functions nil))
 		   (kill-buffer compilation-buffer-name)))
+	   (setq split-width-threshold t)
 	   (compile	(concat "go run -v " run-file) nil)
+	   (setq split-width-threshold nil)
 	   (ja-rename-buffer "*compilation*" compilation-buffer-name)))))
 
 (cl-defun ja-rename-buffer (old-name new-name)
@@ -51,7 +53,6 @@
 	(rename-buffer new-name)
 	(switch-to-buffer remembered-buffer)))
 
-
 (defun ide-run-last-build ()
   "."
   (interactive)
@@ -62,9 +63,20 @@
 
 (defun run-last-build(config-obj)
   "CONFIG-OBJ."
-   (goja-run (gethash "last-build" (gethash "compile" config-obj))))
+  (load-env (get-env-file-path))
+  (goja-run (goja-get-last-build config-obj)))
 
-;;(add-to-list 'yas-snippet-dirs "~/.emacs.d/languages/go/yasnippet-go/go-mode")
+(defun goja-get-last-build (config-obj)
+  "CONFIG-OBJ."
+  (gethash "last-build" (gethash "compile" config-obj)))
+
+(defun goja-add-last-build-to-build-list ()
+  "."
+  (interactive)
+  (setq *context*
+		(load-json-file-to-hash-table
+		 (get-config-path)))
+  (goja-add-to-build-list (goja-get-last-build *context*)))
 
 (add-hook 'go-mode-hook 'create-go-ide-dir)
 
@@ -80,11 +92,30 @@
 	(when (not (file-directory-p (concat path-to-create "/.emacs-go-ide")))
 	  (make-directory (concat path-to-create "/.emacs-go-ide")))))
 
+(defun goja-create-go-ide-dir ()
+  "."
+  (interactive)
+  (create-go-ide-dir))
+
+(defun get-empty-config-obj ()
+  "."
+  (setq compile-config (make-hash-table :test 'equal))
+  (setq config-obj (make-hash-table :test 'equal))
+  (puthash "last-build" "" compile-config)
+  (puthash "build-list" (list) compile-config)
+  (puthash "compile" compile-config config-obj)
+  config-obj)
+
+(print (get-empty-config-obj))
 
 (defun get-config-path ()
   "Will return go IDE config path."
-  (concat (locate-dominating-file buffer-file-name ".emacs-go-ide")
-		  ".emacs-go-ide/config.json"))
+  (let ((config-path (concat (locate-dominating-file buffer-file-name ".emacs-go-ide")
+							 ".emacs-go-ide/config.json")))
+	(when (not (file-exists-p config-path))
+	  (message config-path)
+	  (write-region "" nil config-path))
+	config-path))
 
 (defun goja-add-to-build-list (build-path)
   "Add BUILD-PATH to build-path list in config."
@@ -113,9 +144,30 @@
 								(gethash "compile"
 										 config-obj))))
 
+(defun get-config-obj ()
+  "."
+  (condition-case nil
+	  (load-json-file-to-hash-table (get-config-path))
+	(json-error
+	 (get-empty-config-obj))))
+
+
 (defun build-current-buffer-main()
   "."
-  (interactive))
+  (interactive)
+  (setq *context* (get-config-obj))
+  (build-current-buffer *context*))
+
+(defun build-current-buffer (config-obj)
+  "CONFIG-OBJ."
+  (let ((build-path (replace-regexp-in-string
+					 (projectile-project-root)
+					 ""
+					 (buffer-file-name))))
+	(goja-run build-path)
+	(set-as-last-build build-path config-obj)
+	(persist-go-ide-config config-obj)))
+
 
 (defvar-local *context* (list) "Context contain all info about alias, kubeconfig, namespace for kubernetes.")
 
@@ -140,5 +192,16 @@
    ("c" "current main" build-current-buffer-main)
    ("p" "pick build" ide-pick-to-build)])
 
+(defun get-env-file-path ()
+  (concat (locate-dominating-file buffer-file-name ".emacs-go-ide")
+		  ".env"))
+
+
+
+
+
+
+
 (provide 'init-go)
 ;;; init-go.el ends here
+
