@@ -41,7 +41,16 @@
 	   (setq split-width-threshold t)
 	   (compile	(concat "go run -v " run-file) nil)
 	   (setq split-width-threshold nil)
-	   (ja-rename-buffer "*compilation*" compilation-buffer-name)))))
+	   (ja-rename-buffer "*compilation*" compilation-buffer-name)
+	   (lexical-let ((buf-name compilation-buffer-name))
+	   	 (async-start
+	   	  (lambda ()
+	   		(sleep-for 2))
+	   	  (lambda (result)
+			(with-current-buffer buf-name
+			  (set-window-point
+			   (get-buffer-window  buf-name)
+			   (point-max))))))))))
 
 (cl-defun ja-rename-buffer (old-name new-name)
   "OLD-NAME NEW-NAME."
@@ -63,8 +72,10 @@
 
 (defun run-last-build(config-obj)
   "CONFIG-OBJ."
-  (load-env (get-env-file-path))
-  (goja-run (goja-get-last-build config-obj)))
+  (let ((env-file-path (get-env-file-path)))
+	(when (file-exists-p env-file-path)
+	  (load-env env-file-path)))
+	(goja-run (goja-get-last-build config-obj)))
 
 (defun goja-get-last-build (config-obj)
   "CONFIG-OBJ."
@@ -164,6 +175,9 @@
 					 (projectile-project-root)
 					 ""
 					 (buffer-file-name))))
+	(let ((env-file-path (get-env-file-path)))
+	  (when (file-exists-p env-file-path)
+		(load-env env-file-path)))
 	(goja-run build-path)
 	(set-as-last-build build-path config-obj)
 	(persist-go-ide-config config-obj)))
@@ -193,15 +207,36 @@
    ("p" "pick build" ide-pick-to-build)])
 
 (defun get-env-file-path ()
+  "."
   (concat (locate-dominating-file buffer-file-name ".emacs-go-ide")
 		  ".env"))
 
 
+(defun create-buffer-observer (buffer-name hooks)
+  "Will watch BUFFER-NAME modifications and do HOOKS."
+  (lexical-let ((lexical-hooks hooks)
+				(lexical-buffer-name buffer-name)
+				(lexical-point-max (with-current-buffer buffer-name
+									 (point-max))))
+	#'(lambda ()
+		(while (not (null (get-buffer lexical-buffer-name)))
+		  (sleep-for 0 100)
+		  (let ((current-point-max
+				 (with-current-buffer lexical-buffer-name
+				   (point-max))))
+			(when (not (eq  lexical-point-max current-point-max))
+			  (with-current-buffer lexical-buffer-name
+				(goto-char current-point-max))
+			  (setq lexical-point-max current-point-max)))))))
 
+(defun run-buffer-observer-in-thread (buffer-name hooks)
+  "Run BUFFER-NAME observer in thread.Eval HOOKS in thread."
+  ;; (setq thread (make-thread
+  ;; 				(create-buffer-observer buffer-name hooks)
+  ;; 				buffer-name))
+;;  thread
+  )
 
-
-
-
+()
 (provide 'init-go)
 ;;; init-go.el ends here
-

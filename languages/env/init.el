@@ -10,8 +10,12 @@
 (defun load-lines (lines)
   "LINES ."
   (when (not (null lines))
-    (export-env (car lines))
-    (load-lines (cdr lines))))
+	(let ((env  (car lines)))
+	  (when (not (string= (substring env 0 1) "#"))
+		(export-env  env))
+	  (load-lines (cdr lines)))))
+
+(print (string-remove-prefix "l" "ldsd"))
 
 (defun read-lines (path)
   "Return a list of lines of a file at file PATH."
@@ -21,9 +25,14 @@
 
 (defun export-env (line)
   "LINE ."
-  (let ((splited-line (split-env-line line)))
-    (setenv (car splited-line)
-	    (car(cdr splited-line)))))
+  (let* ((splited-line (split-env-line line))
+		 (env-key (car splited-line))
+		 (env-value (car (cdr splited-line)))
+		 (env-value-pure (string-remove-prefix "\""
+											   (string-remove-suffix "\""
+																	 env-value))))
+    (setenv env-key env-value-pure)))
+			
 
 (defun split-env-line (line)
   "LINE it is a string."

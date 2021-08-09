@@ -17,3 +17,10 @@
 
 (use-package lsp-treemacs
   :commands lsp-treemacs-errors-list)
+
+
+(setq lsp-file-watch-threshold 1000000)
+
+
+(use-package lsp-lens
+  :ensure t)

@@ -34,7 +34,7 @@
  '(flycheck-php-phpcs-executable "~/.emacs.d/languages/php/phpcbf/bin/phpcs")
  '(package-selected-packages
    (quote
-	(treemacs jtags log4j-mode syslog-mode javascript-eslint exec-path-from-shell npm-mode js2-mode lsp-ivy yasnippet-go multi-compile go-scratch go-guru go-direx goscratch gotest go-rename go-eldoc flycheck-phpstan ac-php company-php magit phpcbf composer web-mode projectile diminish all-the-icons dashboard counsel swiper ivy php-project company-go lsp-go docker lsp-docker go-mode sublimity smooth-scrolling smartparens php-mode lsp-ui flycheck company))))
+	(lsp-lens dap-ui-mode dap-mode treemacs jtags log4j-mode syslog-mode javascript-eslint exec-path-from-shell npm-mode js2-mode lsp-ivy yasnippet-go multi-compile go-scratch go-guru go-direx goscratch gotest go-rename go-eldoc flycheck-phpstan ac-php company-php magit phpcbf composer web-mode projectile diminish all-the-icons dashboard counsel swiper ivy php-project company-go lsp-go docker lsp-docker go-mode sublimity smooth-scrolling smartparens php-mode lsp-ui flycheck company))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -50,3 +50,5 @@
 (progn
   (global-set-key (kbd "C-<right>") 'other-window)
   (global-set-key (kbd "C-<left>") 'back-window))
+(put 'upcase-region 'disabled nil)
+(put 'set-goal-column 'disabled nil)
