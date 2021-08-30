@@ -35,3 +35,5 @@
 (load (concat user-emacs-directory "kbd/init-packages-kbd.el"))
 
 (load (concat user-emacs-directory "base.conf/init-treemacs.el"))
+
+(load (concat user-emacs-directory "base.conf/init-ripgrep.el"))

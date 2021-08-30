@@ -1,4 +1,8 @@
 (use-package yasnippet
-  :ensure t)
+  :ensure t
+  :config
+  (use-package yasnippet-snippets
+	:ensure t)
+  (yas-reload-all))
 
-(yas-global-mode 1)
+(add-hook 'go-mode-hook 'yas-minor-mode)

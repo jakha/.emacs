@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: fori
+# key: fori
+# contributor : @atotto
+# --
+for ${1:i} = ${2:0};  ${3:i} < ${4:?}; ${5:i}++ {
+	$0
+}

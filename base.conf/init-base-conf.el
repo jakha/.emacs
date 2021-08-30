@@ -20,8 +20,6 @@
                                orig-fg))))
 (setq visible-bell 1)
 
-(load (concat user-emacs-directory "kbd/init.el"))
-
 (desktop-save-mode 1)
 
 (delete-selection-mode t)  ; delete seleted text when typing
@@ -55,3 +53,16 @@
               (unless (eq (current-buffer) messages)
                 (with-current-buffer messages
                   (goto-char (point-max)))))))
+
+(defun duplicate-line()
+  (interactive)
+  (move-beginning-of-line 1)
+  (kill-line)
+  (yank)
+  (open-line 1)
+  (next-line 1)
+  (yank))
+
+
+(require 'dash-functional)
+

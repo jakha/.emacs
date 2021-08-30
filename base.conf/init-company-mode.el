@@ -13,3 +13,12 @@
 
 (use-package company-php
   :ensure t)
+
+
+(require 'company)
+(use-package company-box
+  :ensure t
+  :after company
+  :hook (company-mode . company-box-mode))
+
+(setq company-fuzzy-prefix-on-top t)

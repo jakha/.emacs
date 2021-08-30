@@ -1,5 +1,7 @@
 (load (concat user-emacs-directory "languages/go/init-go-mode.el"))
 
+(load (concat user-emacs-directory "languages/go/init-debug.el"))
+
 ;;(load (concat user-emacs-directory "languages/go/init-go-eldoc.el"))
 
 ;;(load (concat user-emacs-directory "languages/go/init-company-go.el"))
@@ -28,8 +30,8 @@
 
 (require 'cl-macs)
 
-(defun goja-run (run-file)
-  "RUN-FILE."
+(defun goja-run (run-file &optional params)
+  "RUN-FILE, &OPTIONAL PARAMS."
   (interactive)
   (projectile-run-compilation
    (lambda ()
@@ -39,7 +41,10 @@
 		 (let ((kill-buffer-query-functions nil))
 		   (kill-buffer compilation-buffer-name)))
 	   (setq split-width-threshold t)
-	   (compile	(concat "go run -v " run-file) nil)
+	   (let ((run-string (concat "go run -v " run-file)))
+		 (when (stringp params)
+		   (setq run-string (concat run-string params)))
+		 (compile run-string nil))
 	   (setq split-width-threshold nil)
 	   (ja-rename-buffer "*compilation*" compilation-buffer-name)
 	   (lexical-let ((buf-name compilation-buffer-name))
@@ -124,7 +129,6 @@
   (let ((config-path (concat (locate-dominating-file buffer-file-name ".emacs-go-ide")
 							 ".emacs-go-ide/config.json")))
 	(when (not (file-exists-p config-path))
-	  (message config-path)
 	  (write-region "" nil config-path))
 	config-path))
 
@@ -194,6 +198,16 @@
 	(set-as-last-build build-path *context*)
 	(persist-go-ide-config *context*)))
 
+(defun ide-make-migration ()
+  "."
+  (interactive)
+  (setq *context* (load-json-file-to-hash-table (get-config-path)))
+  (let ((build-path (pick-to-build *context*))
+		(migration-name (read-string "Enter migration name:")))
+	(goja-run build-path (concat " make " migration-name))
+	(set-as-last-build build-path *context*)
+	(persist-go-ide-config *context*)))
+
 (defun set-as-last-build (build-path config-obj)
   "BUILD-PATH CONFIG-OBJ ."
   (let* ((compile (gethash "compile" config-obj)))
@@ -204,7 +218,8 @@
 (define-transient-command goja-build-transient ()
   ["Actions"
    ("c" "current main" build-current-buffer-main)
-   ("p" "pick build" ide-pick-to-build)])
+   ("p" "pick build" ide-pick-to-build)
+   ("m" "make migration" ide-make-migration)])
 
 (defun get-env-file-path ()
   "."
@@ -229,6 +244,16 @@
 				(goto-char current-point-max))
 			  (setq lexical-point-max current-point-max)))))))
 
+
+
+(defun ide-make-terminal ()
+  "."
+  (interactive)
+  (setf default-directory (projectile-project-root))
+  (make-terminal (projectile-project-root)))
+
+
+
 (defun run-buffer-observer-in-thread (buffer-name hooks)
   "Run BUFFER-NAME observer in thread.Eval HOOKS in thread."
   ;; (setq thread (make-thread
@@ -237,6 +262,5 @@
 ;;  thread
   )
 
-()
 (provide 'init-go)
 ;;; init-go.el ends here

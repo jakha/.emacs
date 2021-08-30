@@ -15,8 +15,6 @@
 		(export-env  env))
 	  (load-lines (cdr lines)))))
 
-(print (string-remove-prefix "l" "ldsd"))
-
 (defun read-lines (path)
   "Return a list of lines of a file at file PATH."
   (with-temp-buffer

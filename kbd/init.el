@@ -9,7 +9,10 @@
 
 ;; kill buffer
 (define-key global-map (kbd "C-k") (lambda () (interactive) (kill-buffer (buffer-name))))
-  
+(define-key global-map (kbd "C-<right>") 'forward-word)
+(define-key global-map (kbd "C-<left>") 'backward-word)
+
+
 ;; cut and paste to alt kbd
 (define-key global-map (kbd "M-q") 'kill-region)
 (define-key global-map (kbd "M-e") '(lambda (&optional ARG)
@@ -38,6 +41,9 @@
 (global-set-key (kbd "<f5>") 'bs-show)
 
 (global-set-key (kbd "<f3>") (lambda () (interactive) (revert-buffer t t)))
+
+(global-set-key (kbd "C-d") 'duplicate-line)
+
 
 (provide 'init)
 ;;; init.el ends here
