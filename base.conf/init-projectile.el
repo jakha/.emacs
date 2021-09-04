@@ -4,6 +4,7 @@
 (setq projectile-completion-system 'ivy)
 (setq projectile-enable-caching t)
 (setq projectile-indexing-method 'alien)
+(setq projectile-file-exists-local-cache-expire (* 5 60))
 
 (define-key global-map (kbd "M-f") 'projectile-find-file)
 (define-key global-map (kbd "M-d") 'projectile-find-dir)

@@ -37,3 +37,5 @@
 (load (concat user-emacs-directory "base.conf/init-treemacs.el"))
 
 (load (concat user-emacs-directory "base.conf/init-ripgrep.el"))
+
+(load (concat user-emacs-directory "base.conf/init-terminal.el"))
