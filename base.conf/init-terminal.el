@@ -1,4 +1,6 @@
 
+(use-package vterm
+    :ensure t)
 
 (defun make-terminal (terminal-name)
   "TERMINAL-NAME ."
