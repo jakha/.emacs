@@ -38,7 +38,7 @@
  '(lsp-completion-provider :none)
  '(package-selected-packages
    (quote
-	(vterm company-terraform terraform-doc terraform-mode color-theme-buffer-local dockerfile-mode ripgrep lsp-origami company-capf company-yasnippet company-yasnipet yasnippet-snippets yasnippet company-lsp xterm-color grammarly erefactor protobuf-mode company-box which-key dap-golang dap-go ejson-mode origami lsp-lens dap-ui-mode treemacs jtags log4j-mode syslog-mode javascript-eslint exec-path-from-shell npm-mode js2-mode lsp-ivy yasnippet-go multi-compile go-scratch go-guru go-direx goscratch gotest go-rename go-eldoc flycheck-phpstan ac-php company-php magit phpcbf composer web-mode projectile diminish all-the-icons dashboard counsel swiper ivy php-project company-go lsp-go docker lsp-docker sublimity smooth-scrolling smartparens php-mode))))
+	(vterm-toggle multi-vterm vterm company-terraform terraform-doc terraform-mode color-theme-buffer-local dockerfile-mode ripgrep lsp-origami company-capf company-yasnippet company-yasnipet yasnippet-snippets yasnippet company-lsp xterm-color grammarly erefactor protobuf-mode company-box which-key dap-golang dap-go ejson-mode origami lsp-lens dap-ui-mode treemacs jtags log4j-mode syslog-mode javascript-eslint exec-path-from-shell npm-mode js2-mode lsp-ivy yasnippet-go multi-compile go-scratch go-guru go-direx goscratch gotest go-rename go-eldoc flycheck-phpstan ac-php company-php magit phpcbf composer web-mode projectile diminish all-the-icons dashboard counsel swiper ivy php-project company-go lsp-go docker lsp-docker sublimity smooth-scrolling smartparens php-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -5,7 +5,9 @@
 ;; remove scroll bar
 (scroll-bar-mode -1)
 ;; to actualize buffer if file change on buffer
-(global-auto-revert-mode 1)
+
+(global-auto-revert-mode t)
+
 ;; change cursor type to | 
 (setq-default cursor-type 'bar)
 ;; to save 

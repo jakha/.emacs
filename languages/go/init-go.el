@@ -250,7 +250,7 @@
   "."
   (interactive)
   (setf default-directory (projectile-project-root))
-  (make-terminal (projectile-project-root)))
+  (make-terminal))
 
 
 

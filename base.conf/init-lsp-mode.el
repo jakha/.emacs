@@ -28,7 +28,7 @@
   :config
   (lsp-treemacs-sync-mode 1))
 
-(setq lsp-file-watch-threshold 1000000)
+(setq lsp-file-watch-threshold 8000000)
 
 (use-package helm-lsp
   :commands helm-lsp-workspace-symbol)

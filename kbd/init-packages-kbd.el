@@ -8,7 +8,7 @@
 
 (load (concat user-emacs-directory "kbd/init-origami.el"))
 
+(load (concat user-emacs-directory "kbd/init-terminal.el"))
 
 
 
-(define-key projectile-mode-map (kbd "M-<f12>") 'ide-make-terminal)

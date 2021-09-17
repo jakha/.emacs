@@ -19,17 +19,4 @@
   (dap-mode 1)
   (dap-auto-configure-mode 1))
 
-;(dap-mode 1)
-
-;; (require 'dap-go)
-
-;; (require 'lsp-lens)
-;; (dap-go-setup)
-;; (dap-ui-mode 1)
-;; (dap-tooltip-mode 1)
-;; (tooltip-mode 1)
-;; (dap-ui-controls-mode 1)
 (setq dap-print-io t)
-
-;; (add-hook 'dap-stopped-hook
-;;           (lambda (arg) (call-interactively #'dap-hydra)))
