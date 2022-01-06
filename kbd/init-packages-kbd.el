@@ -10,5 +10,8 @@
 
 (load (concat user-emacs-directory "kbd/init-terminal.el"))
 
+(load (concat user-emacs-directory "kbd/init-kubernetes.el"))
+
+
 
 

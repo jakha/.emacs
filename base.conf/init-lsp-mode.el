@@ -8,6 +8,7 @@
   (setq
        lsp-enable-snippet t
 	   lsp-completion-enable t
+	   lsp-headerline-breadcrumb-icons-enable t
 	   lsp-completion-provider :none))
 
 (add-hook 'lsp-after-open-hook #'lsp-origami-try-enable)
@@ -28,7 +29,7 @@
   :config
   (lsp-treemacs-sync-mode 1))
 
-(setq lsp-file-watch-threshold 8000000)
+(setq lsp-file-watch-threshold 1000)
 
 (use-package helm-lsp
   :commands helm-lsp-workspace-symbol)

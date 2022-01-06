@@ -12,6 +12,7 @@
 (require 'ido)
 (require 'subr-x)
 (require 'transient)
+(require 'cl-macs)
 
 (defun k8s ()
   "Let start work with k8s in Emacs."
@@ -36,10 +37,10 @@
 (defvar-local *context* (list) "Context contain all info about alias, kubeconfig, namespace for kubernetes.")
 
 (defun k8s-pick-alias (aliases)
-  "Function k8s-pick-alias show in ido ALIASES and return picked by user."
+  "Function k8s-pick-alias show in ivy ALIASES and return picked by user."
   (interactive)
   (let ((textToShow (getf (get-constants) :choose-k8s-environment)))
-    (ido-completing-read textToShow aliases)))
+    (ivy-completing-read textToShow aliases)))
 
 (define-transient-command k8s-major-transient ()
   ["Actions"
@@ -65,7 +66,7 @@
   "ARGS."
   (interactive
    (list (transient-args 'k8s-pods-transient)))
-  (k8s-get-logs *context* args))
+  (setq logs-thread (make-thread (k8s-get-logs *context* args) "logs-thread")))
 
 (defun load-json-file-to-hash-table (path)
   "Load json data from PATH, parse and return hash-table with data from file."
@@ -75,19 +76,23 @@
       (kubernetesconfig (json-read-file path)))
     kubernetesconfig))
 
+
 (defun k8s-get-logs (context &optional args)
   "CONTEXT ARGS ."
   (interactive)
-  (let* ((namespace (gethash "namespace" context))
+  (lexical-let* ((namespace (gethash "namespace" context))
 	 (kubeconfig (gethash "kubeconfig" context))
   	 (alias (gethash "alias" context))
 	 (process "*kubectl-get-logs*")
 	 (buffer (concat "*" alias "-" "kubectl-logs*"))
 	 (pod (aref (tabulated-list-get-entry) 0))
-	 (kube-proc (start-process process buffer "kubectl" "-n" namespace
-				   (concat "--kubeconfig=" kubeconfig)
-				   "logs" pod)))
-    (set-process-filter kube-proc (handle-get-logs-output context))))
+	 (context-l context))
+	#'(lambda ()
+		"."
+		(let* ((kube-proc (start-process process buffer "kubectl" "-n" namespace
+										 (concat "--kubeconfig=" kubeconfig)
+										 "logs" pod)))
+		  (set-process-filter kube-proc (handle-get-logs-output context-l))))))
 
 (defun k8s-describe-pod (context)
   "CONTEXT."
@@ -109,10 +114,12 @@
 	 (buffer-name (concat "*" alias "-" "kubectl-logs-output*")))
     (switch-to-buffer buffer-name)
     (lexical-let ((lexical-context context)
-		  (lexical-buffer-name  buffer-name))
+				  (lexical-buffer-name  buffer-name)
+				  (buffer-name-l buffer-name))
       #'(lambda (proc logs)
-	    (goto-char (point-max))
-	    (insert logs)))))
+		  (b-append
+		   (get-buffer buffer-name-l)
+		   logs)))))
 
 (defun handle-describe-pod-output (context)
   "CONTEXT."
@@ -122,8 +129,9 @@
     (lexical-let ((lexical-context context)
 		  (lexical-buffer-name  buffer-name))
       #'(lambda (proc logs)
-	    (goto-char (point-max))
-	    (insert logs)))))
+		  (b-append
+		   (get-buffer lexical-buffer-name)
+		   logs)))))
 
 
 (defun k8s-get-pods (context)
@@ -144,7 +152,6 @@
 (defun k8s-get-ingress (context)
   "CONTEXT."
   (interactive)
-  (print "lol")
   (let* ((namespace (gethash "namespace" context))
   	 (kubeconfig (gethash "kubeconfig" context))
   	 (alias (gethash "alias" context))
@@ -241,8 +248,8 @@ buffer-name))
   (cl-multiple-value-bind (normalizedData newRemainder) (split-and-normalize podRowList remainder)
     (let ((virtualTable (make-hash-table :test 'equal)))
       (dolist (row normalizedData)
-	(puthash (nth 0 row)
-		 `(nil [,(nth 0 row) ,(nth 1 row) ,(nth 2 row) ,(nth 3 row) ,(nth 4 row)]) virtualTable))
+		(puthash (nth 0 row)
+				 `(nil [,(nth 0 row) ,(nth 1 row) ,(nth 2 row) ,(nth 3 row) ,(nth 4 row)]) virtualTable))
       (cl-values virtualTable newRemainder))))
 
 (defun split-and-normalize (podRowList remainder)
@@ -263,7 +270,6 @@ buffer-name))
 		(setq participatedData (list))
 		(return-from loop-start))
       	      (when (> (length participatedData) 5)
-		(print participatedData)
 		(error "Smth goes wrong")))))
     (cl-values resultData participatedData)))
 
@@ -300,8 +306,29 @@ buffer-name))
   (define-key k8s-mode-map (kbd "d") 'describe-pod))
 
 
+
 (use-package syslog-mode
   :ensure t)
 
 (provide 'init)
 ;;; init.el ends here
+
+
+(defun fo ()
+  (if t
+	  (error "hell")
+	(message "unsup")))
+
+(fo)
+
+
+(defun my-thread ()
+  
+  (while t
+  (sleep-for 0.5)
+  (b-append (get-buffer "*stage-rus-get-pods*") "blyat\n")))
+
+(make-thread #'my-thread "my thread")
+
+(all-threads)
+(current-thread)

@@ -10,6 +10,8 @@
 
 (load (concat user-emacs-directory "languages/kubernetes/init.el"))
 
+(load (concat user-emacs-directory "languages/prolog/init.el"))
+
 (load (concat user-emacs-directory "languages/env/init.el"))
 
 (load (concat user-emacs-directory "languages/init-yasnippet.el"))

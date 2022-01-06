@@ -1,3 +1,6 @@
 [submodule "use-package"]
 	path = site-lisp/use-package
 	url = git://github.com/jwiegley/use-package.git
+[submodule "go-dlv.el"]
+	path = go-dlv.el
+	url = git@github.com:benma/go-dlv.el.git

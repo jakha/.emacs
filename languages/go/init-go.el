@@ -29,6 +29,7 @@
 ;; (add-hook 'go-mode-hook 'flycheck-mode)
 
 (require 'cl-macs)
+(require 'cl-lib)
 
 (defun goja-run (run-file &optional params)
   "RUN-FILE, &OPTIONAL PARAMS."
@@ -41,7 +42,7 @@
 		 (let ((kill-buffer-query-functions nil))
 		   (kill-buffer compilation-buffer-name)))
 	   (setq split-width-threshold t)
-	   (let ((run-string (concat "go run -v " run-file)))
+	   (let ((run-string (concat "go run -v -race" run-file)))
 		 (when (stringp params)
 		   (setq run-string (concat run-string params)))
 		 (compile run-string nil))
@@ -121,8 +122,6 @@
   (puthash "build-list" (list) compile-config)
   (puthash "compile" compile-config config-obj)
   config-obj)
-
-(print (get-empty-config-obj))
 
 (defun get-config-path ()
   "Will return go IDE config path."
@@ -244,8 +243,6 @@
 				(goto-char current-point-max))
 			  (setq lexical-point-max current-point-max)))))))
 
-
-
 (defun ide-make-terminal ()
   "."
   (interactive)
@@ -253,6 +250,57 @@
   (make-terminal))
 
 
+(defun goja-get-package ()
+  "."
+  (interactive)
+  (let* ((package-name (ivy-completing-read "Package: " (go-mod-requires)))
+		 (proc-name (concat "go-get-" package-name)))
+	(spinner-start  'progress-bar-filled)
+	(let ((go-get-proc (start-process
+						proc-name
+						nil
+						"go"
+						"get"
+						package-name)))
+	  (set-process-sentinel go-get-proc (lambda (proc data)
+										  (when (not (process-live-p proc))
+											(spinner-stop))))
+	  (set-process-filter go-get-proc (lambda (proc data)
+										(message data))))))
+
+
+(defun go-mod-requires ()
+  "."
+  (let ((go-mod-path (concat (projectile-project-root) "go.mod"))
+		(result (list))
+		(in-require-scope nil))
+	(when (not (file-exists-p go-mod-path))
+	  (error "Not found file"))
+	(dolist (row (split-string (file-to-string go-mod-path) "\n"))
+	  (cond  (in-require-scope
+			  (cond ((string-match-p ")" row)
+		   			 (setq in-require-scope nil))
+					(t
+					 (let ((package (s-trim (first (split-string row " ")))))
+					   (setq result  (append result (list package)))))))
+			 ((string-match-p "require" row)
+			  (cond ((string-match-p "(" row)
+					 (setq in-require-scope t))
+					(t
+					 (let ((go-package-name (s-trim (nth 1 (split-string row " ")))))
+					   (setq result (append result (list go-package-name)))))))))
+	result))
+
+(defun goja-get (package)
+  "PACKAGE - module name."
+  
+  )
+
+(defun file-to-string (file)
+  "FILE to string function."
+  (with-temp-buffer
+    (insert-file-contents file)
+    (buffer-string)))
 
 (defun run-buffer-observer-in-thread (buffer-name hooks)
   "Run BUFFER-NAME observer in thread.Eval HOOKS in thread."
