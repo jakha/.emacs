@@ -20,3 +20,37 @@
   (dap-auto-configure-mode 1))
 
 (setq dap-print-io t)
+
+
+
+(defun ide-debug-last-build ()
+  "."
+  (interactive)
+  (setq *context*
+		(load-json-file-to-hash-table
+		 (get-config-path)))
+  (goja-debug-last-build *context*))
+
+
+(defun goja-debug-last-build (config-obj)
+  "CONFIG-OBJ."
+  (setf default-directory (projectile-project-root))
+  (let* ((env-file-path (get-env-file-path))
+		 (debug-buffer-name (concat
+							 (projectile-project-root)
+							 (goja-get-last-build config-obj)))
+		 (debug-buffer (find-file-noselect debug-buffer-name)))
+	(when (file-exists-p env-file-path)
+	  (load-env env-file-path))
+	(with-current-buffer debug-buffer
+	  (let ((args '(:type "go"
+						  :request "launch"
+						  :name "Launch Unoptimized Debug Package"
+						  :mode "debug"
+						  :program nil
+						  :buildFlags "-gcflags '-N -l'"
+						  :args nil
+						  :env nil
+						  :envFile nil)))
+		(dap-debug args)))))
+;"."

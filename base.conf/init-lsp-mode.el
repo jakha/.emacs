@@ -29,7 +29,8 @@
   :config
   (lsp-treemacs-sync-mode 1))
 
-(setq lsp-file-watch-threshold 1000)
+(setq lsp-file-watch-threshold 10)
+(setq gc-cons-threshold 100000000)
 
 (use-package helm-lsp
   :commands helm-lsp-workspace-symbol)
@@ -44,6 +45,7 @@
 
 (load (concat user-emacs-directory "base.conf/init-lsp-go-client.el"))
 
+;; (setq lsp-enable-file-watchers nil)
 
 ;; Set up before-save hooks to format buffer and add/delete imports.
 ;; Make sure you don't have other gofmt/goimports hooks enabled.

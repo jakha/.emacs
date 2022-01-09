@@ -15,3 +15,5 @@
 (load (concat user-emacs-directory "languages/env/init.el"))
 
 (load (concat user-emacs-directory "languages/init-yasnippet.el"))
+
+(load (concat user-emacs-directory "languages/elisp/init.el"))

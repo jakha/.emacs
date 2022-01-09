@@ -178,7 +178,7 @@
    (k8s-pods-transient:--tail)]
   ["Actions"
    ("l" "Log" get-logs)
-   ("u" "Update get pods" get-pods)
+   ("g" "Update buffer" get-pods)
    ("d" "Describe" describe-pod)])
 
 (defun get-constants ()
@@ -312,14 +312,6 @@ buffer-name))
 
 (provide 'init)
 ;;; init.el ends here
-
-
-(defun fo ()
-  (if t
-	  (error "hell")
-	(message "unsup")))
-
-(fo)
 
 
 (defun my-thread ()

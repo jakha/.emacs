@@ -65,6 +65,7 @@
   (next-line 1)
   (yank))
 
+(setq read-process-output-max (* 1024 1024))
 
 (require 'dash-functional)
 

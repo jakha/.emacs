@@ -76,5 +76,4 @@ Version 2017-09-01"
          (message "File path copied: 「%s」" $fpath)
          $fpath )))))
 
-
 (load (concat user-emacs-directory "utils/b.el"))

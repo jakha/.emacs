@@ -12,7 +12,9 @@
 
 ;;(load (concat user-emacs-directory "languages/go/init-goscratch.el"))
 
-;;(load (concat user-emacs-directory "languages/go/init-go-direx.el"))
+(load (concat user-emacs-directory "languages/go/init-go-direx.el"))
+
+(load (concat user-emacs-directory "languages/go/init-go-mod-vendor.el"))
 
 ;;(load (concat user-emacs-directory "languages/go/init-go-guru.el"))
 

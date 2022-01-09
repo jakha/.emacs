@@ -1,0 +1,4 @@
+;;; -*- lisp-data -*-
+(("~/.emacs.d/")
+ ("~/projects/go_test/")
+ ("~/projects/debex/protos/lots/"))
