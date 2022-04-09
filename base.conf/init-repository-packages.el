@@ -1,3 +1,7 @@
+(use-package quelpa)
+(use-package quelpa-use-package)
+(defvar my-laptop-p (equal (system-name) "jaha-mi"))
+
 (load (concat user-emacs-directory "base.conf/init-company-mode.el"))
 
 (load (concat user-emacs-directory "base.conf/init-smartparens.el"))
@@ -39,3 +43,5 @@
 (load (concat user-emacs-directory "base.conf/init-ripgrep.el"))
 
 (load (concat user-emacs-directory "base.conf/init-terminal.el"))
+
+(load (concat user-emacs-directory "base.conf/init-rg.el"))

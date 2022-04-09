@@ -12,6 +12,8 @@
 
 (load (concat user-emacs-directory "kbd/init-kubernetes.el"))
 
+(load (concat user-emacs-directory "kbd/debug.el"))
+
 
 
 

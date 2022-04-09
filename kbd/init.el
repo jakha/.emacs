@@ -44,6 +44,11 @@
 
 (global-set-key (kbd "C-d") 'duplicate-line)
 
+(global-set-key (kbd "C-{") 'enlarge-window-horizontally)
+(global-set-key (kbd "C-}") 'shrink-window-horizontally)
+
+
+(define-key global-map (kbd "C-c r") 'counsel-rg)
 
 (provide 'init)
 ;;; init.el ends here

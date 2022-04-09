@@ -2,6 +2,7 @@
   :ensure t
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
 		 (go-mode . lsp)
+		 (sql-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands (lsp lsp-deferred)
   :config
@@ -29,7 +30,7 @@
   :config
   (lsp-treemacs-sync-mode 1))
 
-(setq lsp-file-watch-threshold 10)
+(setq lsp-file-watch-threshold 2000)
 (setq gc-cons-threshold 100000000)
 
 (use-package helm-lsp
