@@ -3,6 +3,11 @@
 ;;; Commentary:
 ;;;
 
+(defun load-env-public (read-file-name)
+	(interactive "sEnv file path: ")
+	(load-env read-file-name)
+)
+
 (defun load-env (path)
   "Will load environment variables from PATH."
   (load-lines (read-lines path)))

@@ -8,3 +8,7 @@
 (define-key go-mode-map (kbd "C-j g") 'goja-get-package)
 
 (define-key go-mode-map (kbd "<f6>") 'goja-mod-vendor)
+
+(define-key go-mode-map (kbd "<f7>") 'go-test-current-test)
+
+(define-key go-mode-map (kbd "<f8>") 'go-test-current-test-cache)

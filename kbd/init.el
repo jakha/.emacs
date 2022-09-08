@@ -35,6 +35,8 @@
 ;; rgrep
 (define-key global-map (kbd "M-g r") 'rgrep)
 
+(define-key global-map (kbd "C-S-r") 'replace-string)
+
 ;;utils
 (global-set-key (kbd "C-n") #'xah-new-empty-buffer)
 (global-set-key (kbd "C-S-n") #'lunaryorn-new-buffer-frame)
@@ -49,6 +51,9 @@
 
 
 (define-key global-map (kbd "C-c r") 'counsel-rg)
+
+(define-key global-map (kbd "C->") 'mc/mark-next-like-this)
+
 
 (provide 'init)
 ;;; init.el ends here

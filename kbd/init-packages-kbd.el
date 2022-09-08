@@ -14,6 +14,8 @@
 
 (load (concat user-emacs-directory "kbd/debug.el"))
 
+(load (concat user-emacs-directory "kbd/org-mode.el"))
+
 
 
 
