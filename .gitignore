@@ -23,3 +23,5 @@ ido.last
 ac-comphist.dat
 wget-log
 tramp
+eln-cache/
+projects
