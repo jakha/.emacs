@@ -219,11 +219,11 @@
 	(puthash "compile" compile config-obj))
   config-obj)
 
-(define-transient-command goja-build-transient ()
-  ["Actions"
-   ("c" "current main" build-current-buffer-main)
-   ("p" "pick build" ide-pick-to-build)
-   ("m" "make migration" ide-make-migration)])
+;; (define-transient-command goja-build-transient ()
+;;   ["Actions"
+;;    ("c" "current main" build-current-buffer-main)
+;;    ("p" "pick build" ide-pick-to-build)
+;;    ("m" "make migration" ide-make-migration)])
 
 (defun get-env-file-path ()
   "."

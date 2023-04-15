@@ -69,5 +69,7 @@
 
 (setq backup-directory-alist `(("." . "~/.saves")))
 
+(use-package dash-functional)
+
 (require 'dash-functional)
 

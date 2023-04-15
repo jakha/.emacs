@@ -19,6 +19,7 @@
 (use-package company-box
   :ensure t
   :after company
+  :init (setq company-box-enable-icon nil)
   :hook (company-mode . company-box-mode))
 
 (setq company-fuzzy-prefix-on-top t)

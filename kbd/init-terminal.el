@@ -1,3 +1,6 @@
+(use-package multi-vterm
+  :ensure t)
+
 (require 'multi-vterm)
 
 (define-key projectile-mode-map (kbd "M-<f12>") 'ide-make-terminal)

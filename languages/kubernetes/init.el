@@ -42,10 +42,10 @@
   (let ((textToShow (getf (get-constants) :choose-k8s-environment)))
     (ivy-completing-read textToShow aliases)))
 
-(define-transient-command k8s-major-transient ()
-  ["Actions"
-   ("p" "get pods" get-pods)
-   ("i" "get ingress" get-ingress)])
+;; (define-transient-command k8s-major-transient ()
+;;   ["Actions"
+;;    ("p" "get pods" get-pods)
+;;    ("i" "get ingress" get-ingress)])
 
 (defun get-pods ()
   "."
@@ -165,21 +165,21 @@
     (set-process-filter kube-proc (handle-get-ingress-output context))))
 
 
-(define-infix-argument k8s-pods-transient:--tail ()
-  :description "Tail"
-  :class 'transient-option
-  :shortarg "-t"
-  :argument "--tail=")
+;; (define-infix-argument k8s-pods-transient:--tail ()
+;;   :description "Tail"
+;;   :class 'transient-option
+;;   :shortarg "-t"
+;;   :argument "--tail=")
 
-(define-transient-command k8s-pods-transient ()
-  "Test Transient Title"
-  ["Arguments"
-   ("-f" "Follow" "fpm")
-   (k8s-pods-transient:--tail)]
-  ["Actions"
-   ("l" "Log" get-logs)
-   ("g" "Update buffer" get-pods)
-   ("d" "Describe" describe-pod)])
+;; (define-transient-command k8s-pods-transient ()
+;;   "Test Transient Title"
+;;   ["Arguments"
+;;    ("-f" "Follow" "fpm")
+;;    (k8s-pods-transient:--tail)]
+;;   ["Actions"
+;;    ("l" "Log" get-logs)
+;;    ("g" "Update buffer" get-pods)
+;;    ("d" "Describe" describe-pod)])
 
 (defun get-constants ()
   "Return constants for this plugin."
